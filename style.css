@@ -5,3 +5,9 @@
   align-items: center;
   justify-content: center;
 }
+
+.box {
+  border: 1px solid;
+  justify-self: center;
+  padding: 6px;
+}
