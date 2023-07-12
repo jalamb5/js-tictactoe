@@ -17,4 +17,11 @@ function listenBox(boxes, player) {
   }));
 }
 
+// Game loop.
+function gameLoop(boxes) {
+  player = 'X';
+  listenBox(boxes, player);
+}
+
+gameLoop(boxes);
 
