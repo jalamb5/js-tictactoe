@@ -18,10 +18,9 @@ function listenBox(boxes, player) {
 }
 
 // Game loop.
-function gameLoop(boxes) {
-  player = 'X';
+function gameLoop(boxes, player) {
   listenBox(boxes, player);
+  return player = 'X' ? 'O' : 'X';
 }
 
-gameLoop(boxes);
-
+gameLoop(boxes, 'X');
