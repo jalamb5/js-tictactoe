@@ -3,4 +3,9 @@ function updateBoard(box, player) {
   document.getElementById(box).innerHTML = player
 }
 
+let boxes = document.querySelectorAll('.box')
 
+// Test funtion to ensure boxes can be looped through and updated.
+function testBoxes(boxes) {
+  boxes.forEach(box => updateBoard(box.id, 'test'));
+}
