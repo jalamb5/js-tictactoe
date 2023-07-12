@@ -9,3 +9,12 @@ let boxes = document.querySelectorAll('.box')
 function testBoxes(boxes) {
   boxes.forEach(box => updateBoard(box.id, 'test'));
 }
+
+// Add event listeners to boxes.
+function listenBox(boxes, player) {
+  boxes.forEach(box => box.addEventListener("click", function() {
+    updateBoard(box.id, player);
+  }));
+}
+
+
