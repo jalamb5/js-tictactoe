@@ -4,6 +4,7 @@ function updateBoard(box, player) {
 }
 
 let boxes = document.querySelectorAll('.box')
+let round = 0
 
 // Test funtion to ensure boxes can be looped through and updated.
 function testBoxes(boxes) {
@@ -11,16 +12,24 @@ function testBoxes(boxes) {
 }
 
 // Add event listeners to boxes.
-function listenBox(boxes, player) {
+function listenBox(boxes, round) {
   boxes.forEach(box => box.addEventListener("click", function() {
+    if (round % 2 == 0 && round <= 9) {
+      player = 'X'
+    } else if (round % 2 !== 0 && round <= 9) {
+      player = 'O'
+    } else {
+      console.log('game over')
+    }
     updateBoard(box.id, player);
+    round++;
   }));
 }
 
 // Game loop.
-function gameLoop(boxes, player) {
-  listenBox(boxes, player);
-  return player = 'X' ? 'O' : 'X';
+function gameLoop(boxes, round) {
+  playing = true;
+  listenBox(boxes, round);
 }
 
-gameLoop(boxes, 'X');
+gameLoop(boxes, round);
