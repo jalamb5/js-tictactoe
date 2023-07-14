@@ -19,6 +19,7 @@ function listenBox(boxes, round) {
       updateBoard(box.id, player);
       round++;
     }
+    checkWinner(boxes);
   }));
 }
 
@@ -30,6 +31,13 @@ function updatePlayer(round) {
     return 'O'
   } else {
     console.log('game over')
+  }
+}
+
+// Check board for winner.
+function checkWinner(boxes) {
+  if (boxes[0].innerHTML == boxes[1].innerHTML && boxes[1].innerHTML == boxes[2].innerHTML) {
+    console.log('winner');
   }
 }
 
