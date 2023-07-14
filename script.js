@@ -14,16 +14,23 @@ function testBoxes(boxes) {
 // Add event listeners to boxes.
 function listenBox(boxes, round) {
   boxes.forEach(box => box.addEventListener("click", function() {
-    if (round % 2 == 0 && round <= 9) {
-      player = 'X'
-    } else if (round % 2 !== 0 && round <= 9) {
-      player = 'O'
-    } else {
-      console.log('game over')
+    player = updatePlayer(round);
+    if (player) {
+      updateBoard(box.id, player);
+      round++;
     }
-    updateBoard(box.id, player);
-    round++;
   }));
+}
+
+// Determine player based on current round
+function updatePlayer(round) {
+  if (round % 2 == 0 && round <= 8) {
+    return 'X'
+  } else if (round % 2 !== 0 && round <= 8) {
+    return 'O'
+  } else {
+    console.log('game over')
+  }
 }
 
 // Game loop.
