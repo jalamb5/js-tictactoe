@@ -10,8 +10,8 @@ const WIN_CONFIGS = [
 // Add event listeners to boxes.
 function listenBox(boxes, round) {
   boxes.forEach(box => box.addEventListener("click", function() {
-    player = updatePlayer(round);
-    winner = checkWin(boxes);
+    let player = updatePlayer(round);
+    let winner = checkWin(boxes);
     if (player && !winner) {
       updateBoard(box.id, player);
       round++;
