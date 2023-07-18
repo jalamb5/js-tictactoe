@@ -5,9 +5,11 @@ function updateBoard(box, player) {
 
 let boxes = document.querySelectorAll('.box')
 let round = 0
-const WIN_CONFIGS = [[1, 2, 3], [4, 5, 6], [7, 8, 9], // rows
-                    [1, 4, 7], [2, 5, 8], [3, 6, 9], // columns
-                    [1, 5, 9], [3, 5, 7]] // diagonals
+const WIN_CONFIGS = [
+  [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+  [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+  [0, 4, 8], [2, 4, 6] // diagonals
+];
 
 // Test funtion to ensure boxes can be looped through and updated.
 function testBoxes(boxes) {
@@ -18,11 +20,11 @@ function testBoxes(boxes) {
 function listenBox(boxes, round) {
   boxes.forEach(box => box.addEventListener("click", function() {
     player = updatePlayer(round);
-    if (player) {
+    winner = checkWin(boxes);
+    if (player && !winner) {
       updateBoard(box.id, player);
       round++;
     }
-    checkWinner(boxes);
   }));
 }
 
@@ -38,16 +40,27 @@ function updatePlayer(round) {
 }
 
 // Check board for winner.
-function checkWinner(boxes) {
-  if (boxes[0].innerHTML == boxes[1].innerHTML && boxes[1].innerHTML == boxes[2].innerHTML) {
-    console.log('winner');
+function checkWin(boxes) {
+  for (const config of WIN_CONFIGS) {
+    const [a, b, c] = config;
+    const valueA = boxes[a].innerHTML;
+    const valueB = boxes[b].innerHTML;
+    const valueC = boxes[c].innerHTML;
+
+    if (valueA && valueA === valueB && valueA === valueC) {
+      // All three locations in 'boxes' are the same
+      document.getElementById('message').innerHTML = 'Winner';
+      return true;
+    }
   }
+
+  // No winning configuration found
+  return false;
 }
 
-// Game loop.
-function gameLoop(boxes, round) {
-  playing = true;
+// Run game.
+function game(boxes, round) {
   listenBox(boxes, round);
 }
 
-gameLoop(boxes, round);
+game(boxes, round);
