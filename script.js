@@ -42,7 +42,7 @@ function updatePlayer(round) {
   } else if (round % 2 !== 0 && round <= 8) {
     return 'O'
   } else {
-    console.log('game over')
+    MESSAGE.innerHTML = 'Scratch';
   }
 }
 
