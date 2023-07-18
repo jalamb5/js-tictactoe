@@ -1,10 +1,16 @@
 // Given a location (box) and 'X' or 'O' (player), add the appropriate play to the board.
 function updateBoard(box, player) {
-  document.getElementById(box).innerHTML = player
+  if (document.getElementById(box).innerHTML == '') {
+    document.getElementById(box).innerHTML = player
+  } else {
+    MESSAGE.innerHTML = 'Please choose an empty space'
+  }
+
 }
 
 let boxes = document.querySelectorAll('.box')
 let round = 0
+const MESSAGE = document.getElementById('message')
 const WIN_CONFIGS = [
   [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
   [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
@@ -24,6 +30,7 @@ function listenBox(boxes, round) {
     if (player && !winner) {
       updateBoard(box.id, player);
       round++;
+      checkWin(boxes);
     }
   }));
 }
