@@ -1,12 +1,3 @@
-// Given a location (box) and 'X' or 'O' (player), add the appropriate play to the board.
-function updateBoard(box, player) {
-  if (document.getElementById(box).innerHTML == '') {
-    document.getElementById(box).innerHTML = player
-  } else {
-    MESSAGE.innerHTML = 'Please choose an empty space'
-  }
-}
-
 let boxes = document.querySelectorAll('.box')
 let round = 0
 const MESSAGE = document.getElementById('message')
@@ -15,11 +6,6 @@ const WIN_CONFIGS = [
   [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
   [0, 4, 8], [2, 4, 6] // diagonals
 ];
-
-// Test funtion to ensure boxes can be looped through and updated.
-function testBoxes(boxes) {
-  boxes.forEach(box => updateBoard(box.id, 'test'));
-}
 
 // Add event listeners to boxes.
 function listenBox(boxes, round) {
@@ -55,13 +41,22 @@ function checkWin(boxes) {
 
     if (valueA && valueA === valueB && valueA === valueC) {
       // All three locations in 'boxes' are the same
-      document.getElementById('message').innerHTML = 'Winner';
+      MESSAGE.innerHTML = 'Winner';
       return true;
     }
   }
 
   // No winning configuration found
   return false;
+}
+
+// Given a location (box) and 'X' or 'O' (player), add the appropriate play to the board.
+function updateBoard(box, player) {
+  if (document.getElementById(box).innerHTML == '') {
+    document.getElementById(box).innerHTML = player
+  } else {
+    MESSAGE.innerHTML = 'Please choose an empty space'
+  }
 }
 
 // Run game.
