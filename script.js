@@ -5,7 +5,6 @@ function updateBoard(box, player) {
   } else {
     MESSAGE.innerHTML = 'Please choose an empty space'
   }
-
 }
 
 let boxes = document.querySelectorAll('.box')
